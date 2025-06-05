@@ -1,0 +1,65 @@
+[
+  {
+    "title": "IT Service Desk Assistant",
+    "company": "University of Washington Housing & Food Services",
+    "dates": "Apr 2025 - Present",
+    "details": "WIP",
+    "team": null
+  },
+  {
+    "title": "Research Assistant",
+    "company": "University of Washington Department of Biology",
+    "dates": "Jan 2025 - Present",
+    "details": "Develop tools to smoothen computational process\nmade RevSyntax (VSCode extension)",
+    "team": "Tribble Lab"
+  },
+  {
+    "title": "Marketing",
+    "company": "Software Engineering Career Club at UW (SWECC)",
+    "dates": "Sep 2024 - Present",
+    "details": "Outreach and club projects",
+    "team": null
+  },
+  {
+    "title": "Team Lead",
+    "company": "Web Impact UW",
+    "dates": "Apr 2025 - May 2025",
+    "details": "Led React.js teaching and development",
+    "team": null
+  },
+  {
+    "title": "Research Collaborator",
+    "company": "University of Washington Human Centered Design & Engineering",
+    "dates": "Jan 2025 - Mar 2025",
+    "details": "Collaborated on data theory with PhDs and grad students\nfocusing on measurement, quantification, and ethics",
+    "team": "Theory That Counts"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Leaner Startups",
+    "dates": "Oct 2023 - Jul 2024",
+    "details": "Worked on MERN stack website\nmade real-time bookings page and engagement statistics",
+    "team": null
+  },
+  {
+    "title": "Developer",
+    "company": "University of Washington Information School",
+    "dates": "Mar 2024 - Jun 2024",
+    "details": "Built Wordplay using TypeScript and SvelteKit\nimplemented optimized PEMDAS parser",
+    "team": "WordPlayPen"
+  },
+  {
+    "title": "Web Developer",
+    "company": "Sensors, Energy, and Automation Laboratory (SEAL)",
+    "dates": "Sep 2022 - Mar 2023",
+    "details": "Maintained UW SEAL/IAC sites\nfixed UI issues and added features with HTML, CSS, JS, and WordPress",
+    "team": null
+  },
+  {
+    "title": "IT Guy",
+    "company": "The Salvation Army",
+    "dates": "Sep 2022 - Sep 2022",
+    "details": "Set up AV system\nwrote custom software for data parsing, web scraping, and presentation UI/UX\nPowerPoint design",
+    "team": null
+  }
+]
