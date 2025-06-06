@@ -1,12 +1,15 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, type PropsWithChildren } from 'react';
 import { Row } from './Layouts';
 
 const sliderStyle: React.CSSProperties = {
   width: '100%',
-
 };
 
-const SpinningStars: React.FC = () => {
+interface SpinningStarsProps extends PropsWithChildren {
+  height: string | number; // e.g., '80vh' or 600
+}
+
+const SpinningStars: React.FC<SpinningStarsProps> = ({ height, children }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const starsRef = useRef<{ x: number; y: number; z: number }[]>([]);
   const xSpeedRef = useRef(0.001);
@@ -17,7 +20,6 @@ const SpinningStars: React.FC = () => {
   const [ySpeed, setYSpeed] = useState(ySpeedRef.current);
   const [radius, setRadius] = useState(radiusRef.current);
 
-  // Generate stars ONCE
   useEffect(() => {
     const numStars = 400;
     starsRef.current = Array.from({ length: numStars }, () => {
@@ -35,9 +37,12 @@ const SpinningStars: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext('2d')!;
-    const { width, height } = canvas.getBoundingClientRect();
-    canvas.width = width;
-    canvas.height = height;
+    const resize = () => {
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
 
     const viewerZ = -400;
     const starSize = 0.5;
@@ -91,9 +96,9 @@ const SpinningStars: React.FC = () => {
     }
 
     animate();
+    return () => window.removeEventListener('resize', resize);
   }, []);
 
-  // Update refs
   const handleXSpeedChange = (val: number) => {
     setXSpeed(val);
     xSpeedRef.current = val;
@@ -111,23 +116,29 @@ const SpinningStars: React.FC = () => {
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        style={{
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '80vh',
-          display: 'block',
-          backgroundColor: 'rgb(3, 0, 25)',
-        }}
-      />
-      <Row style={{
-        justifyContent: "space-evenly",
-        margin: '0 30vw',
-        gap: '2em', 
+      <div style={{ position: 'relative', height, width: '100%' }}>
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: -1,
+            backgroundColor: 'rgba(3, 0, 25)',
+          }}
+        />
+        <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
+      </div>
 
-      }}>
+      <Row
+        style={{
+          justifyContent: 'space-evenly',
+          margin: '0 30vw',
+          gap: '2em',
+          // padding: '2em 0',
+        }}
+      >
         <label>
           X Rotation Speed: {xSpeed.toFixed(4)}
           <input

@@ -1,75 +1,124 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import experienceData from '../assets/experiences.json';
 import ExperienceCard from '../components/ExperienceCard';
 import type { Experience } from '../types/experiences';
-import SpinningStars from '../components/SpinningStars';
 import { Column, Row } from '../components/Layouts';
-import pfp from '../assets/pfp.png'; // replace with actual path or URL
+// import pfp from '../assets/pfp.png';
 import NavBar from '../components/NavBar';
-import ThumbnailCard from '../components/PageSelector';
-// import StarsBackground from '../components/starsbackground';
-
-// Define a TypeScript interface for experience entries
+// import ThumbnailCard from '../components/ThumbnailCard';
+import { theme } from '../assets/themes';
+import SlidingGallery from '../components/SlidingGallery';
+import { socials } from '../types/socials';
 
 function HomePage() {
+  const [selectedType, setSelectedType] = useState< 'development' | 'research' | 'community'>('development');
+
+  
+
   useEffect(() => {
     console.log(experienceData);
-  }, []); // run only on mount
+  }, []);
+
+  const filteredExperiences = (experienceData as Experience[]).filter((exp) => {
+    return exp.type === selectedType;
+  });
 
   return (
-    <>
-    <NavBar/>
-        <SpinningStars></SpinningStars>
-
-      {/* <StarsBackground /> */}
-      <header className="homepage-header" 
-      style={{
-        margin: '0 10vw',
-
-      }}>
+    <div style={{
+      margin: '10vh 0',
+    }}>
+      <NavBar />
+      <header
+        className="homepage-header"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '100%',
+          // paddingTop: '5em',
+          margin: '0 10vw',
+          // boxShadow: theme.shadows.soft,
+          borderRadius: theme.radius.default,
+          backgroundColor: theme.colors.background,
+        }}
+      >
         <Row>
-        <div className="header-top">
-          <img
-            src={pfp} // replace with actual path or URL
-            alt="Benjamin So"
-            className="profile-img"
+
+          <Column
             style={{
-              width: '15em',
-              height: '15em',
-              borderRadius: '50%',
-              border: '2px solid white',
+              // alignContent: 'flex-start',
+              margin: '2em 10vw',
+              fontSize: '1.25em',
+              textAlign: 'left',
             }}
-          />
-          <h1 style={{
-            alignContent: 'center',
-            textAlign: 'center',
-          }}>Benjamin So</h1>
-        </div>
-        <Column style={{
-          alignContent:'flex-start',
-          margin: '2em 10vw',
-        }}>
-          <p>
-            Hi there! I’m an undergraduate student at the University of Washington, majoring in Applied Math and Electrical & Computer Engineering. While that’s technically the title, my main focus lies in software engineering.
-          </p>
-          <p>
-            most of my projects revolve around building tools for other domains. I’ve dabbled in areas such as biology, human-centered design, multimedia, and more. Currently, I work at UW Housing & Food Services, where I’m developing a printer management program called <strong>Skittles</strong>.
-          </p>
-          <p>
-            Outside the classroom, I stay active in the UW community through clubs like SWECC and HCP. While my main focus is outreach, I’ve led projects and mentored others in React development. I'm also an upcoming ACMS ambassador
-          </p>
-        </Column>
+          >
+            <Column>
+  <h1>Benjamin So</h1>
+  <Row style={{ gap: '1em', justifyContent: 'center' }}>
+    {socials.map((social, idx) => (
+      <a
+        key={idx}
+        href={social.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5em',
+          textDecoration: 'none',
+        }}
+      >
+        <img
+          src={social.logo}
+          alt={social.platform}
+          style={{ width: '1.5em', height: '1.5em' }}
+        />
+      </a>
+    ))}
+  </Row>
+</Column>
+
+            <p>
+            A visitor! Hi there! 
+            </p>
+            <p>
+              I’m an undergraduate student at the University of Washington, majoring in Applied Math and Electrical & Computer Engineering. While that’s technically the title, my focus is in software engineering.
+            </p>
+            <p>
+            Most of my projects have been about building tools that support other fields like biology, human-centered design, and multimedia. Right now, I’m working at UW Housing & Food Services, where I'm developing a fun little printer management program called Skittles.            </p>
+            <p>
+              Outside the classroom, I stay active in the community through clubs like SWECC and HCP. I’ve led projects and mentored others in React development. I'm also an upcoming ACMS ambassador.
+            </p>
+          </Column>
+        </Row>
+      </header>
+      <h2 style={{
+          padding:'2em'
+        }}>Experiences</h2>
+
+      <section id="experiences" style={{ margin: '0 20vw' }}>
+
+        <Row style={{ gap: '1em', marginBottom: '1em', alignContent: 'space-evenly', justifyContent: 'center' }}>
+          {['development', 'research', 'community'].map((type) => (
+            <button
+              key={type}
+              onClick={() => setSelectedType(type as typeof selectedType)}
+              style={{
+                padding: '0.5em 1em',
+                borderRadius: '0.5em',
+                border: selectedType === type ? '2px solid #fff' : '1px solid gray',
+                backgroundColor: selectedType === type ? theme.colors.primary : ' rgba(55, 66, 82, 0.8)',
+                color: '#fff',
+                cursor: 'pointer',
+              }}
+            >
+              {type.charAt(0).toUpperCase() + type.slice(1)}
+            </button>
+          ))}
         </Row>
 
-      </header>
-
-      <section id="experiences"
-      style={{
-        margin: '0 20vw',
-      }}>
-        <h2>Experience</h2>
-        {experienceData && experienceData.length > 0 ? (
-          (experienceData as Experience[]).map((exp, index) => (
+        { 
+          filteredExperiences.map((exp, index) => (
             <ExperienceCard
               key={index}
               company={exp.company}
@@ -77,15 +126,17 @@ function HomePage() {
               team={exp.team}
               details={exp.details}
               dates={exp.dates}
-              imgUrl={exp.imgUrl}
-            />
+              imgUrl={exp.imgUrl} 
+              type={exp.type} />
           ))
-        ) : (
-          <p>No experience data found.</p>
-        )}
+        }
       </section>
-      <ThumbnailCard imageSrc={pfp} pageName="fffff"></ThumbnailCard>
-    </>
+      <h2 style={{
+          padding:'2em'
+        }}>Random stuff I worked on</h2>
+
+      <SlidingGallery></SlidingGallery>
+      </div>
   );
 }
 

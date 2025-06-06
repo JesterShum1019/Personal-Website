@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Column } from './Layouts';
 import type { Experience } from '../types/experiences';
 import defaultLogo from '../assets/image.png';
+import { theme } from '../assets/themes';
 
 const ExperienceCard: React.FC<Experience> = ({
   title,
@@ -10,6 +11,7 @@ const ExperienceCard: React.FC<Experience> = ({
   details,
   team,
   imgUrl,
+  type = 'development', // Default to 'development' if not provided
 }) => {
   const noPadding: React.CSSProperties = {
     padding: 0,
@@ -20,7 +22,17 @@ const ExperienceCard: React.FC<Experience> = ({
     name.replace(/university of washington/i, 'UW');
 
   return (
-    <Row style={{ padding: '1em', gap: '1em', alignItems: 'flex-start' }}>
+    <Row 
+    style={{ 
+      margin: '3em',
+      padding: '1.5em',
+      gap: '2em',
+      alignItems: 'flex-start',
+      // boxShadow: theme.shadows.medium,
+      borderRadius: theme.radius.default,
+      backgroundColor: theme.colors.background,
+      // border: '1px solid rgba(0, 100, 111, 0.2)',
+       }}>
       {/* Logo */}
       <Column>
         <img

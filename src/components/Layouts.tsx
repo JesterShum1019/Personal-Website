@@ -11,7 +11,7 @@ export function Row({ children, style }: Props): React.ReactElement {
       style={{
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         ...style, // Allow override
       }}
     >
@@ -26,7 +26,7 @@ export function Column({ children, style }: Props): React.ReactElement {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         ...style, // Allow override
       }}
     >
