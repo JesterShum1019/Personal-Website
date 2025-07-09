@@ -172,7 +172,7 @@ function HomePage() {
       major="Concentration: Finance &amp; Information Systems"
       date="Sep 2024 - Jun 2027"
       content="Relevant Coursework: Economics, Accounting, Finance, Database Management, Investments"
-      imgUrl="/public/UW.png"
+      imgUrl="/assets/UW.png"
       />
 
       <EducationCard
