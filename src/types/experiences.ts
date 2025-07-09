@@ -5,5 +5,5 @@ export interface Experience {
     details: string;
     team: string | null;
     imgUrl: string | null;
-    type: 'development' | 'research' | 'community';
+    type: 'Development' | 'Leadership' | 'Community';
   }

@@ -2,7 +2,7 @@ import React from 'react';
 
 interface Props {
   children: React.ReactNode;
-  style?: React.CSSProperties;
+  style: React.CSSProperties;
 }
 
 export function Row({ children, style }: Props): React.ReactElement {

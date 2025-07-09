@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Column } from './Layouts';
 import type { Experience } from '../types/experiences';
 import defaultLogo from '../assets/image.png';
-import { theme } from '../assets/themes';
+import { boxDefault } from '../assets/themes';
 
 const ExperienceCard: React.FC<Experience> = ({
   title,
@@ -11,7 +11,6 @@ const ExperienceCard: React.FC<Experience> = ({
   details,
   team,
   imgUrl,
-  type = 'development', // Default to 'development' if not provided
 }) => {
   const noPadding: React.CSSProperties = {
     padding: 0,
@@ -28,13 +27,11 @@ const ExperienceCard: React.FC<Experience> = ({
       padding: '1.5em',
       gap: '2em',
       alignItems: 'flex-start',
-      // boxShadow: theme.shadows.medium,
-      borderRadius: theme.radius.default,
-      backgroundColor: theme.colors.background,
-      // border: '1px solid rgba(0, 100, 111, 0.2)',
+      ...boxDefault,
+
        }}>
       {/* Logo */}
-      <Column>
+      <Column style={{}}>
         <img
           src={imgUrl || defaultLogo}
           alt={`${company} logo`}
@@ -51,18 +48,19 @@ const ExperienceCard: React.FC<Experience> = ({
       <Column style={{ alignItems: 'flex-start', flex: 1 }}>
         {/* Title and Dates */}
         <Row style={{ justifyContent: 'space-between', width: '100%' }}>
-          <h2 style={noPadding}>{title}</h2>
-          <h4 style={noPadding}>{dates}</h4>
+          <p style={noPadding}>{title}</p>
+          <p style={noPadding}>{dates}</p>
         </Row>
 
         {/* Company and Team */}
-        <h3 style={noPadding}>
+        <p style={noPadding}>
+        {team ? ` ${team} @ ` : ''}
+
           {formatCompanyName(company)}
-          {team ? ` @ ${team}` : ''}
-        </h3>
+        </p>
 
         {/* Details (multi-line) */}
-        <h4 style={{ ...noPadding, whiteSpace: 'pre-wrap' }}>{details}</h4>
+        <p style={{ ...noPadding, whiteSpace: 'pre-wrap' }}>{details}</p>
       </Column>
     </Row>
   );

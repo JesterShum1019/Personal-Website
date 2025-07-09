@@ -4,9 +4,8 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 
-import cardsData from '../assets/stuff.json';
 import ThumbnailCard from './ThumbnailCard';
-import { theme } from '../assets/themes';
+import { boxDefault } from '../assets/themes';
 
 interface CardItem {
   title: string;
@@ -15,8 +14,29 @@ interface CardItem {
 }
 
 const SlidingGallery: React.FC = () => {
-  const cards = cardsData as CardItem[];
-
+  const cards : Array<CardItem> = [
+    {
+      "title": "Personal Portfolio Template",
+      "img": "/assets/portfolio.png",
+      "url": "https://docs.google.com/spreadsheets/d/14cE8UFOUEYAN9bEooecDeMe-Y4Rx8Dct-mrEjzsxsyI/edit?gid=0#gid=0"
+    },
+    {
+      "title": "website i thought looked cool",
+      "img": "/assets/stuff/old_website.png",
+      "url": "https://benjaminsoyh.github.io/catamiogo-web/"
+    },
+    {
+      "title": "Consulting Report I did for a Small Business",
+      "img": "/assets/company/freshfam.png",
+      "url": "/assets/Fresh Family Report.pdf"
+    },
+    {
+      "title": "domain I own",
+      "img": "/assets/image.png",
+      "url": "https://ratamigo.me"
+    }
+  ]
+  
   return (
     <div
       style={{
@@ -24,10 +44,9 @@ const SlidingGallery: React.FC = () => {
         maxWidth: '1000px',
         padding: '2em clamp(1em, 5vw, 4em)',
         boxSizing: 'border-box',
-        backgroundColor: theme.colors.background,
         margin: '0 auto',
-        borderRadius: theme.radius.default,
-        boxShadow: theme.shadows.medium,
+      ...boxDefault,
+
       }}
     >
       <Swiper
@@ -61,3 +80,4 @@ const SlidingGallery: React.FC = () => {
 };
 
 export default SlidingGallery;
+
