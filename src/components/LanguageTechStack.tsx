@@ -2,7 +2,7 @@ import React from 'react';
 import { theme } from '../assets/themes';
 
 const data: Record<string, string[]> = {
-  'DCF Modeling': ['Python', 'HTML', 'CSS'],
+  'DCF Modeling': ['Python', 'HTML', 'CSS', 'React','Node.js'],
   'Precedent Transaction': [ 'MySQL', 'R Studio','Excel VBA', 'PPT',],
   'Portfolio Management': ['Looker Studio', 'Access'],
   '3-Statement Model/Analysis': [],

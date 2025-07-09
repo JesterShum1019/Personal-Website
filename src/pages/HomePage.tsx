@@ -27,6 +27,7 @@ const heroContainerStyle: React.CSSProperties = {
   padding: '2rem',
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-between'
 };
 
 const heroTitleStyle: React.CSSProperties = {
@@ -123,33 +124,41 @@ function HomePage() {
     }}>
       <section style={heroStyle}>
         <div style={heroContainerStyle}>
-          <h1 style={heroTitleStyle}>Jester Shum</h1>
-
-          <Row style={{ gap: '1em', justifyContent: 'center' }}>
-            {socials.map((social, idx) => (
-              <a
-              key={idx}
-              href={social.link}
-              target="_blank"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5em',
-                textDecoration: 'none',
-              }}
-            >
-              <img
-                src={social.logo}
-                alt={social.platform}
-                style={{ width: '1.5em', height: '1.5em' }}
-              />
-            </a>
-          ))}
-        </Row>
+          <Row style={{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginRight: '1rem;'
+            }}>
+            <h1 style={heroTitleStyle}>Jester Shum</h1>
+              <Row style={{ 
+                gap: '1em', 
+                justifyContent: 'right',
+                }}>
+                {socials.map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.link}
+                  target="_blank"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5em',
+                    textDecoration: 'none',
+                  }}
+                >
+                  <img
+                    src={social.logo}
+                    alt={social.platform}
+                    style={{ width: '1.5em', height: '1.5em' }}
+                  />
+                </a>
+              ))}
+              </Row>
+          </Row>
         
         <Column style={{ gap: '1rem'}}>
           <p style={{ fontStyle: 'italic', color: '#555' }}>
-            A Visitor! This website is still in development, so it might look unfinished
+            A Visitor! This website is still in development, so it might look unfinished :)
             </p>
             <p>
               Hello! I'm Jester Shum, a junior at the University of Washington, Foster School of Business,
@@ -158,7 +167,7 @@ function HomePage() {
             Which led to majoring in finance.
             </p>
             <p>
-              Outside the classroom, I stay active in the community through clubs like SWECC and HCP. I’ve led projects and mentored others in React development. I'm also an upcoming ACMS ambassador.
+              Outside the classroom, I am super into investing in the stock market and managing my portfolio, watching it grow like my own child. And I love playing Pool. Anyways, please feel free to connect with me. :)
             </p>
           </Column>
         </div>

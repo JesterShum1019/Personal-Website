@@ -1,3 +1,4 @@
+// ThumbnailCard.tsx
 import React, { useState } from 'react';
 import { Column } from './Layouts';
 
@@ -6,6 +7,9 @@ interface ThumbnailCardProps {
   pageName: string;
   url?: string;
   height?: string | number;
+  // Ensure link opens in new tab
+  target?: React.HTMLAttributeAnchorTarget;
+  rel?: string;
 }
 
 const ThumbnailCard: React.FC<ThumbnailCardProps> = ({
@@ -13,6 +17,8 @@ const ThumbnailCard: React.FC<ThumbnailCardProps> = ({
   pageName,
   url = '#',
   height = 'auto',
+  target = '_blank',
+  rel = 'noopener noreferrer',
 }) => {
   const [hovered, setHovered] = useState(false);
 
@@ -62,6 +68,8 @@ const ThumbnailCard: React.FC<ThumbnailCardProps> = ({
   return (
     <a
       href={url}
+      target={target}
+      rel={rel}
       style={{ textDecoration: 'none', color: 'inherit' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

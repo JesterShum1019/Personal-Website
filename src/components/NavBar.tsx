@@ -35,7 +35,7 @@ const logoStyle: React.CSSProperties = {
   height: '32px',
   borderRadius: '50%',
   marginRight: '0.5em',
-  backgroundImage: 'url(/assets/husky.png)', // Replace with your logo path
+  backgroundImage: 'url(/assets/husky.png)',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
@@ -74,13 +74,13 @@ const underlineStyle: React.CSSProperties = {
 };
 
 const navItems = [
-  { label: 'Home',       href: '/'   , isRouter: false   },
-  { label: 'Education',  href: '/#education', isRouter: false   },
-  { label: 'Experience', href: '/#experience', isRouter: false   },
-  { label: 'Extra curricular', href: '/#extra-curricular', isRouter: false   },
-  { label: 'Skills',     href: '/#skills',     isRouter: false   },
-  { label: 'Contact',    href: '/contact',    isRouter: true   },
-  { label: 'Resume',     href: '/assets/Jester Shum Resume.pdf' }
+  { label: 'Home', href: '/', isRouter: false },
+  { label: 'Education', href: '/#education', isRouter: false },
+  { label: 'Experience', href: '/#experience', isRouter: false },
+  { label: 'Extra curricular', href: '/#extra-curricular', isRouter: false },
+  { label: 'Skills', href: '/#skills', isRouter: false },
+  { label: 'Contact', href: '/contact', isRouter: true },
+  { label: 'Resume', href: '/assets/Jester Shum Resume.pdf', isRouter: false, newTab: true },
 ];
 
 const Navbar: React.FC = () => (
@@ -92,49 +92,36 @@ const Navbar: React.FC = () => (
       </div>
 
       <div style={linkGroupStyle}>
-        {navItems.map(({ label, href, isRouter }) => isRouter ? (
-          <Link
-            key={label}
-            to={href}
-            style={linkStyle}
-            onMouseEnter={e => {
+        {navItems.map(({ label, href, isRouter, newTab }) => {
+          const commonProps = {
+            style: linkStyle,
+            onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
               Object.assign(e.currentTarget.style, linkHoverStyle);
               const underline = document.createElement('span');
               Object.assign(underline.style, underlineStyle, { width: '100%' });
               e.currentTarget.appendChild(underline);
-            }}
-            onMouseLeave={e => {
+            },
+            onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
               Object.assign(e.currentTarget.style, linkStyle);
               const span = e.currentTarget.querySelector('span');
               if (span) span.remove();
-            }}
-          >
-            {label}
-          </Link>
-        ) : (
-          <a
-            key={href}
-            href={href}
-            style={linkStyle}
-            onMouseEnter={e => {
-              Object.assign(e.currentTarget.style, linkHoverStyle);
-              const underline = document.createElement('span');
-              Object.assign(underline.style, underlineStyle, { width: '100%' });
-              e.currentTarget.appendChild(underline);
-            }}
-            onMouseLeave={e => {
-              Object.assign(e.currentTarget.style, linkStyle);
-              const span = e.currentTarget.querySelector('span');
-              if (span) span.remove();
-            }}
-          >
-            {label}
-          </a>
-        ))}
+            },
+            ...(newTab && { target: '_blank', rel: 'noopener noreferrer' }),
+          } as React.AnchorHTMLAttributes<any>;
+
+          return isRouter ? (
+            <Link key={label} to={href} {...commonProps}>
+              {label}
+            </Link>
+          ) : (
+            <a key={href} href={href} {...commonProps}>
+              {label}
+            </a>
+          );
+        })}
       </div>
     </div>
   </nav>
 );
 
 export default Navbar;
-

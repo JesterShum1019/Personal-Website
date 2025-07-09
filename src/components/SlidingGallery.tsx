@@ -21,9 +21,9 @@ const SlidingGallery: React.FC = () => {
       "url": "https://docs.google.com/spreadsheets/d/14cE8UFOUEYAN9bEooecDeMe-Y4Rx8Dct-mrEjzsxsyI/edit?gid=0#gid=0"
     },
     {
-      "title": "website i thought looked cool",
-      "img": "/assets/stuff/old_website.png",
-      "url": "https://benjaminsoyh.github.io/catamiogo-web/"
+      "title": "My old Website",
+      "img": "/assets/wix.png",
+      "url": "https://jestersclong.wixsite.com/jester-shum"
     },
     {
       "title": "Consulting Report I did for a Small Business",
@@ -65,13 +65,18 @@ const SlidingGallery: React.FC = () => {
           <SwiperSlide
             key={index}
             style={{ display: 'flex', justifyContent: 'center' }}
-          >
+          ><a
+            href={card.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none', width: '100%'}}>
             <ThumbnailCard
               imageSrc={card.img}
               pageName={card.title}
               url={card.url}
               height="10em"
             />
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>
