@@ -10,6 +10,7 @@ import LanguageTechStack from '../components/LanguageTechStack';
 import React from 'react';
 import NewExperienceCard from '../components/NewExperienceCard';
 import EducationCard from '../components/EducationCard';
+<meta name="viewport" content='width=device-width, initial-scale=1'></meta>
 
 
 const heroStyle: React.CSSProperties = {
@@ -164,7 +165,7 @@ function HomePage() {
               Hello! I'm Jester Shum, a junior at the University of Washington, Foster School of Business,
                majoring in <span style={majorStyle}>Finance </span> 
                and <span style={majorStyle}> Information Systems. </span>Growing up, I have always loved the feeling of making profits, especially when I started reselling things online, making a little money at a time and feeling proud of every win
-            Which led to majoring in finance.
+            which led to majoring in finance.
             </p>
             <p>
               Outside the classroom, I am super into investing in the stock market and managing my portfolio, watching it grow like my own child. And I love playing Pool. Anyways, please feel free to connect with me. :)
