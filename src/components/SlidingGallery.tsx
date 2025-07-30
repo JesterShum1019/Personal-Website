@@ -31,9 +31,9 @@ const SlidingGallery: React.FC = () => {
       "url": "/assets/Fresh Family Report.pdf"
     },
     {
-      "title": "domain I own",
-      "img": "/assets/image.png",
-      "url": "https://ratamigo.me"
+      "title": "Website you looking at right now :)",
+      "img": "/assets/jestershumme.png",
+      "url": "https://www.jestershum.me"
     }
   ]
   

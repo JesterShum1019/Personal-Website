@@ -173,6 +173,10 @@ function HomePage() {
           </Column>
         </div>
       </section>
+      <TopicBreaker title='My Side Projects'></TopicBreaker>
+      <SlidingGallery></SlidingGallery>
+      <TopicBreaker id='skills' title='Skills'></TopicBreaker>
+      <LanguageTechStack></LanguageTechStack>
 
       <TopicBreaker id="education" title='Education'></TopicBreaker>
 
@@ -283,10 +287,8 @@ function HomePage() {
           ))
         }
       </section>
-      <TopicBreaker title='Random stuff I worked on'></TopicBreaker>
-      <SlidingGallery></SlidingGallery>
-      <TopicBreaker id='skills' title='Skills'></TopicBreaker>
-      <LanguageTechStack></LanguageTechStack>
+      
+
 
 
       </div>

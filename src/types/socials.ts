@@ -20,6 +20,11 @@ export interface Social {
       platform: 'Instagram',
       link: 'https://www.instagram.com/js_cls/',
       logo: '/assets/ig.png',
+    },
+    {
+      platform: 'GitHub',
+      link: 'https://github.com/JesterShum1019',
+      logo: '/assets/git.jpg',
     }  
   ];
   
